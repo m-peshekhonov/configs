@@ -1,12 +1,12 @@
 # слева
 if [ $SSH_CONNECTION ]; then
-    PS1=%{$GREEN%}"`hostname -s`  "%{$NO_COLOR%}%
+    PS1=%{$GREEN%}"`hostname -s` "%{$NO_COLOR%}%
 else
-    PS1=%{$BLUE%}"dk  "%{$NO_COLOR%}%
+    PS1=%{$BLUE%}"$ "%{$NO_COLOR%}%
 fi
 
 # справа
-RPS1="%{$BLACK%} %~%{$NO_COLOR%}%"
+RPS1="%{$NO_COLOR%}%~%{$NO_COLOR%}%"
 function zle-line-init zle-keymap-select {
     zle reset-prompt
 }

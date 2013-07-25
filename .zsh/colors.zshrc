@@ -1,7 +1,6 @@
 autoload -U compinit colors zmv
 export TERM=xterm-color
 
-
 #load colors
 autoload colors && colors
 for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do

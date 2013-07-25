@@ -3,7 +3,7 @@ set t_Co=256
 " вклюить подсветку синтаксиса
 syntax on
 " цветовая схема
-colorscheme Tomorrow-Night-Eighties 
+colorscheme SnappyLight 
 "set number
 set numberwidth=3
 set laststatus=0
