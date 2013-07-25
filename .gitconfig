@@ -13,8 +13,8 @@
     cim = commit -a -m
     st = status
     b = branch
-    l = log --graph --pretty=format:'%C(110)%h%Creset %C(243)[%an]%Creset | %C(250)%s%Creset (%ad, %ar)%C(cyan)%d%Creset' --date=short -10
-    la = log --graph --pretty=format:'%C(110)%h%Creset %C(242)[%an]%Creset | %C(250)%s%Creset (%ad)%C(cyan)%d%Creset' --date=local --all
+    l = log --graph --pretty=format:'%C(110)%h%Creset %C(243)[%an]%Creset | %s %C(248)(%ad, %ar)%C(cyan)%d%Creset' --date=short -10
+    la = log --graph --pretty=format:'%C(110)%h%Creset %C(242)[%an]%Creset | %s %C(248)(%ad)%C(cyan)%d%Creset' --date=local --all
     pur = pull --rebase
     coma = commit --amend
 [core]
