@@ -1,13 +1,11 @@
 " 256 цветов
 set t_Co=256
-" включить подсветку синтаксиса
+" вклюить подсветку синтаксиса
 syntax on
-" фон
-set background=dark
 " цветовая схема
-colorscheme solarized
+colorscheme Tomorrow-Night-Eighties 
 "set number
-"set numberwidth=3
+set numberwidth=3
 set laststatus=0
 set showtabline=2
 " выделять строку под курсором

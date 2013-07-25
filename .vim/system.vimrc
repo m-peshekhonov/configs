@@ -12,8 +12,6 @@ set backspace=indent,eol,start
 set wildmenu
 " режим wildmenu, показывающий все папки и файлы списком
 set wildmode=list:longest,full
-" хаки для backspace под скрином
-set t_kb=^V
 " запретить создание *.swp файлов
 set noswapfile
 " запретить backup

@@ -1,13 +1,6 @@
 all:
-	@ mkdir `pwd`/.vim/bundle
-	@ echo "===> fetch vim bundles..."
-	@ git clone git://github.com/gmarik/vundle.git `pwd`/.vim/bundle/vundle > /dev/null 2>&1
 	@ rm -rf ${HOME}/.vim ${HOME}/.zsh;
 	@ find `pwd` -maxdepth 1 -mindepth 1 -name '.*' -not -name '.git' -exec ln -s -f {} ${HOME} \;
-	@ vim -u `pwd`/.vim/vundle.vimrc +BundleInstall! +qa
-	@ echo "===> setup 'commant-t' bundle..."
-	@ ruby -C `pwd`/.vim/bundle/command-t/ruby/command-t/ extconf.rb > /dev/null 2>&1
-	@ make -C `pwd`/.vim/bundle/command-t/ruby/command-t/ > /dev/null 2>&1
 	@ echo "\033[00;34m --- workflow setup complete! ---"
 
 customs:
@@ -46,5 +39,4 @@ vim:
 
 update:
 	@ git pull > /dev/null 2>&1
-	@ vim +BundleInstall! +qa
 	@ echo -e "\033[00;34m --- update complete! ---"
