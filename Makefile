@@ -1,3 +1,5 @@
+CONFIGS_DIR = `pwd`
+
 all:
 	@ rm -rf ${HOME}/.vim ${HOME}/.zsh;
 	@ find `pwd` -maxdepth 1 -mindepth 1 -name '.*' -not -name '.git' -exec ln -s -f {} ${HOME} \;
@@ -6,14 +8,14 @@ all:
 customs:
 	@ while [ -z "$$CUSTOM_DOTFILES" ]; do \
 		echo "\n"; \
-        read -r -p " Custom dotfiles repository (or press Enter): " CUSTOM_DOTFILES_REPO; \
+        read -r -p " Custom configs repository (or press Enter): " CUSTOM_DOTFILES_REPO; \
 		if [ ! $$CUSTOM_DOTFILES_REPO == "" ]; then \
-			read -r -p "Custom dotfiles directory (or press Enter): " CUSTOM_DOTFILES_DIR; \
+			read -r -p "Custom configs directory (or press Enter): " CUSTOM_DOTFILES_DIR; \
 			if [ ! $$CUSTOM_DOTFILES_DIR == "" ]; then \
 				CUSTOMS_ROOT=customs; \
 				mkdir $$CUSTOMS_ROOT > /dev/null 2>&1; \
 				mkdir $$CUSTOMS_ROOT/$$CUSTOM_DOTFILES_DIR \
-					&& echo "===> fetch custom dotfiles..." \
+					&& echo "===> fetch custom configs..." \
 					&& git clone $$CUSTOM_DOTFILES_REPO $$CUSTOMS_ROOT/$$CUSTOM_DOTFILES_DIR; \
 			else \
 				break; \
@@ -35,8 +37,15 @@ vim:
 	@ make
 	@ echo "===> install ..."
 	@ make install
-	@ echo -e "\033[00;34m --- complete ---"
+	@ echo "\033[00;34m --- complete ---"
 
-update:
-	@ git pull > /dev/null 2>&1
-	@ echo -e "\033[00;34m --- update complete! ---"
+up:
+	@ echo "===> updating main configs"
+	@ git pull
+	@ if [ -d $(CONFIGS_DIR)/customs ]; then \
+		echo "===> updating custom configs"; \
+		for CUSTOM_FOLDER in $(CONFIGS_DIR)/customs/*; do \
+			cd $$CUSTOM_FOLDER && git pull; \
+		done; \
+	fi;
+	@ echo "\033[00;34m --- update complete! ---"
