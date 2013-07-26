@@ -31,5 +31,3 @@ source ~/.zsh/system.zshrc
     for CUSTOM_FOLDER in ~/.configs/customs/*; do
         source $CUSTOM_FOLDER.zshrc;
     done
-
-                                                                                                                                                                                                                                    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}

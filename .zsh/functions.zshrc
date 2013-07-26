@@ -44,7 +44,6 @@ pack() {
     fi
 }
 
-
 # SHELL
 # рекурсивное удаение по маске
 rrmm() {
@@ -57,36 +56,15 @@ f() {
     find . -type f -name "$1" -and -not -name "*.svn*" -exec grep -i -l "$2" {} \;
 }
 
-# подключение удаленного диска
-SSM__mount_root=~/work/_mounted;
-SSM__params() {};
+#GIT
+# change origin of git repo
+chor() {
+    git remote rm origin
+    git remote add origin $1
+}
 
-ssmount() {
-    SSM_repopath=$1;
-
-    SSM_volname=$1
-    [ -z $2 ] || SSM_volname=$2;
-
-    [ -z $DEFAULT_DEV ] || SSM_dev=$DEFAULT_DEV;
-
-    # генерим парамерты
-    SSM_params $1 $2;
-
-    # проверяем начилие всех необходимых настроек
-    [[ -z $SSM_dev && -z $SSM_repopath && -z $SSM_volname ]] && return;
-
-    # локально создаём папку, в которую будем маунтить
-    SSM_local_path=$SSM__mount_root/$SSM_volname;
-    [ -d $SSM_local_path ] || mkdir $SSM_local_path;
-
-    # логируем составленную комманду
-    echo "\n\tsshfs -C $SSM_dev:/home/$IAMIS/$SSM_repopath $SSM_local_path\n";
-
-    sshfs -C $SSM_dev:/home/$IAMIS/$SSM_repopath $SSM_local_path \
-        -o volname=$SSM_volname \
-        -o transform_symlinks \
-        -o follow_symlinks \
-        -o reconnect \
-        -o cache=no \
-        -o noappledouble
+cidate() {
+    # указанный или последний коммит
+    STATE=$1 || HEAD;
+    git show $STATE | grep Date | awk -F':   ' '{print $2}'
 }
