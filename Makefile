@@ -8,9 +8,9 @@ all:
 customs:
 	@ while [ -z "$$CUSTOM_DOTFILES" ]; do \
         read -r -p "Custom configs repository (or press Enter): " CUSTOM_DOTFILES_REPO; \
-		if [ ! $$CUSTOM_DOTFILES_REPO == "" ]; then \
+		if [ ! -z $$CUSTOM_DOTFILES_REPO ]; then \
 			read -r -p "Custom configs directory (or press Enter): " CUSTOM_DOTFILES_DIR; \
-			if [ ! $$CUSTOM_DOTFILES_DIR == "" ]; then \
+			if [ ! -z $$CUSTOM_DOTFILES_DIR ]; then \
 				CUSTOMS_ROOT=customs; \
 				[ -d $CUSTOMS_ROOT ] || mkdir $$CUSTOMS_ROOT > /dev/null 2>&1; \
 				mkdir $$CUSTOMS_ROOT/$$CUSTOM_DOTFILES_DIR \
