@@ -2,18 +2,17 @@ CONFIGS_DIR = `pwd`
 
 all:
 	@ rm -rf ${HOME}/.vim ${HOME}/.zsh;
-	@ find `pwd` -maxdepth 1 -mindepth 1 -name '.*' -not -name '.git' -exec ln -s -f {} ${HOME} \;
+	@ find `pwd` -maxdepth 1 -mindepth 1 -name '.*' -not -name '.git' -not -name '.gitignore' -exec ln -s -f {} ${HOME} \;
 	@ echo "\033[00;34m --- workflow setup complete! ---"
 
 customs:
 	@ while [ -z "$$CUSTOM_DOTFILES" ]; do \
-		echo "\n"; \
-        read -r -p " Custom configs repository (or press Enter): " CUSTOM_DOTFILES_REPO; \
+        read -r -p "Custom configs repository (or press Enter): " CUSTOM_DOTFILES_REPO; \
 		if [ ! $$CUSTOM_DOTFILES_REPO == "" ]; then \
 			read -r -p "Custom configs directory (or press Enter): " CUSTOM_DOTFILES_DIR; \
 			if [ ! $$CUSTOM_DOTFILES_DIR == "" ]; then \
 				CUSTOMS_ROOT=customs; \
-				mkdir $$CUSTOMS_ROOT > /dev/null 2>&1; \
+				[ -d $CUSTOMS_ROOT ] || mkdir $$CUSTOMS_ROOT > /dev/null 2>&1; \
 				mkdir $$CUSTOMS_ROOT/$$CUSTOM_DOTFILES_DIR \
 					&& echo "===> fetch custom configs..." \
 					&& git clone $$CUSTOM_DOTFILES_REPO $$CUSTOMS_ROOT/$$CUSTOM_DOTFILES_DIR; \
@@ -49,3 +48,5 @@ up:
 		done; \
 	fi;
 	@ echo "\033[00;34m --- update complete! ---"
+
+.PHONY: all customs vim

@@ -15,14 +15,15 @@ source ~/.zsh/binds.zshrc
 # хаки и прочее
 source ~/.zsh/system.zshrc
 
-    # local
-    #export PATH=~/bin/:$PATH
-    export PATH=~/bin/:$PATH:./node_modules/.bin
-    export NODE_PATH=$HOME/node_modules
-
+if [ $SSH_CONNECTION ]; then
     # remote
-    #export PATH=~/bin/:/usr/local/share/npm/bin:$PATH
-    #export NODE_PATH=/usr/local/lib/node_modules
+    export PATH=~/bin/:/usr/lib/node_modules/npm/bin:$PATH
+    export NODE_PATH=/usr/lib/node_modules/npm/node_modules
+else
+    # local
+    export PATH=~/bin/:$PATH:./node_modules/.bin:/usr/local/share/npm/bin
+    export NODE_PATH=/usr/local/share/npm/lib/node_modules
+fi
 
 #source ~/.profile
 
