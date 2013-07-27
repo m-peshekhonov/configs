@@ -3,15 +3,13 @@ alias df="df -h"
 alias vi="vim"
 alias ssh="ssh -A"
 
-# if Mac OS
 case `uname` in
+    # if Mac OS
     Darwin)
-    alias l="ls -lahG"
+        alias l="ls -lahG"
     ;;
-esac
-# if Linux
-case `uname` in
+    # if Linux
     Linux)
-    alias l="ls -lahG --color=auto"
+        alias l="ls -lahG --color=auto"
     ;;
 esac
