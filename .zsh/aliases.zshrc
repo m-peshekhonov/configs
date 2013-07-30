@@ -5,7 +5,7 @@ alias ssh="ssh -A"
 
 case `uname` in
     # if Mac OS
-    Darwin)
+    Darwin | FreeBSD)
         alias l="ls -lahG"
     ;;
     # if Linux
