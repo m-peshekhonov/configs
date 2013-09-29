@@ -17,7 +17,7 @@ source ~/.zsh/system.zshrc
 
 if [ $SSH_CONNECTION ]; then
     # remote
-    export PATH=~/bin/:/usr/lib/node_modules/npm/bin:$PATH
+   # export PATH=~/bin/:/usr/lib/node_modules/npm/bin:$PATH
     export NODE_PATH=/usr/lib/node_modules/npm/node_modules
 else
     # local
